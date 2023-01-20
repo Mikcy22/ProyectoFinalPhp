@@ -18,7 +18,7 @@
         <aside>
             <h1>Register</h1>
             <h2>Por favor, rellena todos los datos</h2>
-            <form id="signupForm">
+            <form id="signupForm" action="register.php" method="post">
 
                 <label for="firstName">Nombre:</label>
                 <input type="text" id="firstName" name="firstName">
@@ -44,6 +44,65 @@
             <p>¿Estas logeado? <a href="login.php">Logeate</a></p>
         </aside>
     </section>
-    <script src="../js/register.js"></script>
+  <!--  <script src="../js/register.js"></script>-->
+
+
+    <!--FORMULARIO PHP -->
+<?php
+/*
+
+Campos obligatorios: nombre, apellidos, email y telefono.
+nombre y apellidos: minimo 4 caracteres cada uno
+comentarios: maximo 400 caracteres
+comprobar formato del campo email con una expresion 
+    regular evaluada desde javascript (no usar el atributo pattern)
+formato para el telefono: (+34)666555444
+
+*/
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // asignar valores a variables
+    $name = $_POST['name'];
+    $nalastNameme = $_POST['lastName'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['passwordConfirm'];
+
+    // inicializar variable de errores
+    $errors = array();
+
+    // validar nombre
+    if (empty($name)) {
+        $errors['name'] = "El nombre es requerido.";
+    }
+
+    // validar correo electrónico
+    if (empty($email)) {
+        $errors['email'] = "El correo electrónico es requerido.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "El correo electrónico no es válido.";
+    }
+
+    // validar contraseñas
+    if (empty($password)) {
+        $errors['password'] = "La contraseña es requerida.";
+    } elseif (strlen($password) < 8) {
+        $errors['password'] = "La contraseña debe tener al menos 8 caracteres.";
+    } elseif ($password != $password_confirm) {
+        $errors['password'] = "Las contraseñas no coinciden.";
+    }
+
+    // si no hay errores, continuar con el registro del usuario
+    if (empty($errors)) {
+        // codigo para registrar al usuario
+    } else {
+        
+      var_dump($errors);
+
+    }
+}
+
+?>
+
 </body>
 </html>
