@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,15 +11,8 @@
     	
 </head>
 <body>
-	<header id="main-header">
-        <nav id ="navHeader">
-            <a href="login.php"><div id="menu2">Login</div></a>
-            <a href="register.php"><div id="menu2">Registro</div></a>
-            <a href="#aqui"><div id="menuMin">Conocimientos</div></a>
-            <a href="#cuboContenedor"><div id="menuMin">Projectos</div></a>
-            <a href="#about-me" ><div id="menuMin">Sobre mi</div></a>
-        </nav>
-	</header> 	
+	<?php include 'cabecera.php'; ?>
+
 
 	<div id ="content">
 		<h2 id="nombre">Miguel Ángel</h2>
